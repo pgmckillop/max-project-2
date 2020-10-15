@@ -6,15 +6,25 @@ import {
   IonTabButton,
   IonIcon,
   IonLabel,
-  IonTabs
+  IonTabs,
+  IonMenu,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonList,
+  IonItem,
+  IonMenuToggle
 } from '@ionic/react';
 import { Route, Redirect } from 'react-router-dom';
 import { IonReactRouter } from '@ionic/react-router';
-import { list, trophyOutline } from 'ionicons/icons';
+import { list, trophyOutline, options } from 'ionicons/icons';
 
+/* Pages */
 import Courses from './pages/Courses';
 import CourseGoals from './pages/CourseGoals';
 import AllGoals from './pages/AllGoals';
+import Filter from './pages/Filter';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -39,8 +49,34 @@ import './theme/theme.css';
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
+      <IonMenu contentId="main">
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle>Course Goals</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent>
+          <IonList>
+            <IonMenuToggle>
+              <IonItem button routerLink="/all-goals">
+              <IonIcon slot="start" icon={list}/>
+              <IonLabel>All goals</IonLabel>
+            </IonItem>
+            </IonMenuToggle>
+            <IonMenuToggle>
+              <IonItem button routerLink="/filter">
+              <IonIcon slot="start" icon={options}/>
+              <IonLabel>Filter</IonLabel>
+            </IonItem>
+            </IonMenuToggle>
+          </IonList>
+        </IonContent>
+      </IonMenu>
       <IonTabs>
-        <IonRouterOutlet>
+        <IonRouterOutlet id="main">
+          <Route path="/filter" excat>
+            <Filter />
+          </Route>
           <Route path="/courses" exact>
             <Courses />
           </Route>

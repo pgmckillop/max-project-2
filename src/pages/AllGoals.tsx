@@ -4,21 +4,23 @@ import {
   IonHeader,
   IonTitle,
   IonToolbar,
+  IonButtons,
+  IonMenuButton,
 } from "@ionic/react";
 import React from "react";
 // import { useHistory } from "react-router-dom";
 
 const AllGoals: React.FC = () => {
-  // const history = useHistory();
-
-  // const changePageHandler = () => {
-  //   history.push("/course-goals");
-  // };
+  
+  
 
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
+          <IonButtons slot="start">
+            <IonMenuButton />
+          </IonButtons>
           <IonTitle>All goals</IonTitle>
         </IonToolbar>
       </IonHeader>
