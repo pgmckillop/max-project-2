@@ -25,8 +25,7 @@ const CourseGoals: React.FC = () => {
             <IonBackButton defaultHref="/" />
           </IonButtons>
           <IonTitle>
-            {selectedCourse ? selectedCourse.title : 'No course'}
-            {/* {selectedCourse ? selectedCourse.title : 'No course found!'} */}
+            {selectedCourse ? selectedCourse.title : 'No course found!'}
           </IonTitle>
         </IonToolbar>
       </IonHeader>

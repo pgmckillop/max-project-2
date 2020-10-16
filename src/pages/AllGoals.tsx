@@ -1,19 +1,15 @@
+import React from 'react';
 import {
-  IonPage,
-  IonContent,
   IonHeader,
-  IonTitle,
+  IonContent,
   IonToolbar,
+  IonTitle,
+  IonPage,
   IonButtons,
-  IonMenuButton,
-} from "@ionic/react";
-import React from "react";
-// import { useHistory } from "react-router-dom";
+  IonMenuButton
+} from '@ionic/react';
 
 const AllGoals: React.FC = () => {
-  
-  
-
   return (
     <IonPage>
       <IonHeader>
@@ -21,12 +17,11 @@ const AllGoals: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>All goals</IonTitle>
+          <IonTitle>All Goals</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <h2>This works - All goals Page</h2>
-        
+        <h2>This works - all goals page!</h2>
       </IonContent>
     </IonPage>
   );
