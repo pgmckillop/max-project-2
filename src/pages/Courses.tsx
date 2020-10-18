@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   IonHeader,
   IonContent,
@@ -13,9 +13,17 @@ import {
   IonButton,
   IonCardHeader,
   IonCardTitle,
-  IonCardSubtitle
+  IonCardSubtitle,
+  isPlatform,
+  IonButtons,
+  IonIcon,
+  IonFab,
+  IonFabButton
 } from '@ionic/react';
 // import { useHistory } from 'react-router-dom';
+
+import { addOutline } from 'ionicons/icons';
+import AddCourseModal from '../components/AddCourseModal';
 
 export const COURSE_DATA = [
   {
@@ -44,12 +52,30 @@ const Courses: React.FC = () => {
   // const changePageHandler = () => {
   //   history.push('/course-goals');
   // };
+  const [isAdding, setIsAdding] = useState(false);
+
+  const startAddCourseHandler = () => {
+    setIsAdding(true);
+  };
+
+  const cancelAddCourseHandler = () => {
+    setIsAdding(false);
+  };
 
   return (
+    <React.Fragment>
+      <AddCourseModal show={isAdding} onCancel={cancelAddCourseHandler}/>
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonTitle>Courses</IonTitle>
+          {!isPlatform("android") && (
+              <IonButtons slot='end'>
+                <IonButton onClick={startAddCourseHandler}>
+                  <IonIcon slot='icon-only' icon={addOutline} />
+                </IonButton>
+              </IonButtons>
+            )}
         </IonToolbar>
       </IonHeader>
       <IonContent>
@@ -78,8 +104,16 @@ const Courses: React.FC = () => {
             </IonRow>
           ))}
         </IonGrid>
+      {isPlatform("android") && (
+            <IonFab horizontal='end' vertical='bottom' slot='fixed'>
+              <IonFabButton color='secondary' onClick={startAddCourseHandler}>
+                <IonIcon icon={addOutline} />
+              </IonFabButton>
+            </IonFab>
+          )}
       </IonContent>
     </IonPage>
+    </React.Fragment>
   );
 };
 

@@ -29,6 +29,7 @@ import { COURSE_DATA } from "./Courses";
 import EditModal from '../components/EditModal';
 import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 
+
 const CourseGoals: React.FC = () => {
   const [startedDeleting, setStartedDeleting] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
