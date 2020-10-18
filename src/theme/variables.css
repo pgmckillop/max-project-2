@@ -3,26 +3,26 @@ http://ionicframework.com/docs/theming/ */
 
 /** Ionic CSS Variables **/
 :root {
-  --ion-color-primary: #ffde38;
-  --ion-color-primary-rgb: 255, 222, 56;
+  --ion-color-primary: #ffb638;
+  --ion-color-primary-rgb: 255, 182, 56;
   --ion-color-primary-contrast: #000000;
   --ion-color-primary-contrast-rgb: 0, 0, 0;
-  --ion-color-primary-shade: #e0c331;
-  --ion-color-primary-tint: #ffe14c;
+  --ion-color-primary-shade: #e0a031;
+  --ion-color-primary-tint: #ffbd4c;
 
-  --ion-color-secondary: #092ad3;
-  --ion-color-secondary-rgb: 9, 42, 211;
+  --ion-color-secondary: #8b3dff;
+  --ion-color-secondary-rgb: 139, 61, 255;
   --ion-color-secondary-contrast: #ffffff;
   --ion-color-secondary-contrast-rgb: 255, 255, 255;
-  --ion-color-secondary-shade: #0825ba;
-  --ion-color-secondary-tint: #223fd7;
+  --ion-color-secondary-shade: #7a36e0;
+  --ion-color-secondary-tint: #9750ff;
 
-  --ion-color-tertiary: #fcff52;
-  --ion-color-tertiary-rgb: 252, 255, 82;
+  --ion-color-tertiary: #d952ff;
+  --ion-color-tertiary-rgb: 217, 82, 255;
   --ion-color-tertiary-contrast: #000000;
   --ion-color-tertiary-contrast-rgb: 0, 0, 0;
-  --ion-color-tertiary-shade: #dee048;
-  --ion-color-tertiary-tint: #fcff63;
+  --ion-color-tertiary-shade: #bf48e0;
+  --ion-color-tertiary-tint: #dd63ff;
 
   --ion-color-success: #2dd36f;
   --ion-color-success-rgb: 45, 211, 111;
