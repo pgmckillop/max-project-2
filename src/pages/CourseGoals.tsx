@@ -11,11 +11,17 @@ import {
   IonItem,
   IonLabel,
   IonButton,
-  IonIcon
+  IonIcon,
+  IonItemSliding,
+  IonItemOptions,
+  IonItemOption,
+  IonFab,
+  IonFabButton,
+  isPlatform
 } from '@ionic/react';
 import { useParams } from 'react-router-dom';
 
-import { create } from 'ionicons/icons';
+import { create, trash, addOutline } from 'ionicons/icons';
 
 import { COURSE_DATA } from './Courses';
 
@@ -24,8 +30,12 @@ const CourseGoals: React.FC = () => {
 
   const selectedCourse = COURSE_DATA.find(c => c.id === selectedCourseId);
 
-  const deleteItemHandler = () => {
+  const startDeleteGoalHandler = () => {
     console.log('Deleted...');
+  };
+
+  const startAddGoalHandler = () => {
+    console.log('Adding goal ...');
   };
 
   const startEditGoalHandler = (event: React.MouseEvent) => {
@@ -38,36 +48,57 @@ const CourseGoals: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton defaultHref="/" />
+            <IonBackButton defaultHref="/courses/list" />
           </IonButtons>
           <IonTitle>
             {selectedCourse ? selectedCourse.title : 'No course found!'}
           </IonTitle>
+          {!isPlatform('android') && <IonButtons slot="end">
+            <IonButton onClick={startAddGoalHandler}>
+              <IonIcon slot="icon-only" icon={addOutline}/>
+            </IonButton>
+          </IonButtons>}
         </IonToolbar>
       </IonHeader>
       <IonContent>
         {selectedCourse && (
           <IonList>
             {selectedCourse.goals.map(goal => (
-              <IonItem
-                key={goal.id}
-                lines="full"
-                button
-                onClick={deleteItemHandler}
-              >
-                <IonLabel>{goal.text}</IonLabel>
-                <IonButton
-                  fill="clear"
-                  color="dark"
-                  slot="end"
-                  onClick={startEditGoalHandler}
+              <IonItemSliding key={goal.id}>
+                <IonItemOptions side="start">
+                  <IonItemOption onClick={startDeleteGoalHandler} color="danger">
+                    <IonIcon slot="icon-only" icon={trash}/>
+                  </IonItemOption>
+                </IonItemOptions>
+                <IonItem
+                  lines="full"
+                  // button
+                  // onClick={deleteItemHandler}
                 >
-                  <IonIcon slot="icon-only" icon={create} />
-                </IonButton>
-              </IonItem>
+                  <IonLabel>{goal.text}</IonLabel>
+                  {/* <IonButton
+                    fill="clear"
+                    color="dark"
+                    slot="end"
+                    onClick={startEditGoalHandler}
+                  >
+                    <IonIcon slot="icon-only" icon={create} />
+                  </IonButton> */}
+                </IonItem>
+                <IonItemOptions side="end">
+                  <IonItemOption onClick={startEditGoalHandler}>
+                    <IonIcon slot="icon-only" icon={create} />
+                  </IonItemOption>
+                </IonItemOptions>
+              </IonItemSliding>
             ))}
           </IonList>
         )}
+        {isPlatform('android') && <IonFab horizontal="end" vertical="bottom" slot="fixed">
+          <IonFabButton color="secondary" onClick={startAddGoalHandler}>
+            <IonIcon icon={addOutline}/>
+          </IonFabButton>
+        </IonFab>}
       </IonContent>
     </IonPage>
   );
