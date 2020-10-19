@@ -1,27 +1,27 @@
+import React, { useRef, useState } from 'react';
 import {
-  IonButton,
-  IonCol,
-  IonContent,
-  IonGrid,
+  IonModal,
   IonHeader,
-  IonInput,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonButton,
+  IonGrid,
+  IonRow,
+  IonCol,
   IonItem,
   IonLabel,
-  IonModal,
-  IonRow,
-  IonText,
-  IonTitle,
-  IonToolbar,
-} from "@ionic/react";
-import React, { useRef, useState } from "react";
+  IonInput,
+  IonText
+} from '@ionic/react';
 
 const EditModal: React.FC<{
   show: boolean;
   onCancel: () => void;
   onSave: (goalText: string) => void;
-  editedGoal: { id: string; text: string };
-} | null> = (props) => {
-  const [error, setError] = useState("");
+  editedGoal: { id: string; text: string } | null;
+}> = props => {
+  const [error, setError] = useState('');
 
   const textRef = useRef<HTMLIonInputElement>(null);
 
@@ -29,7 +29,7 @@ const EditModal: React.FC<{
     const enteredText = textRef.current!.value;
 
     if (!enteredText || enteredText.toString().trim().length === 0) {
-      setError("Please enter a valid Goal text");
+      setError('Please enter a valid text!');
       return;
     }
 
@@ -40,7 +40,7 @@ const EditModal: React.FC<{
     <IonModal isOpen={props.show}>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>{props.editedGoal ? "Edit " : "Add "}Goal</IonTitle>
+          <IonTitle>{props.editedGoal ? 'Edit' : 'Add'} Goal</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
@@ -48,9 +48,9 @@ const EditModal: React.FC<{
           <IonRow>
             <IonCol>
               <IonItem>
-                <IonLabel position='floating'>Goal text</IonLabel>
+                <IonLabel position="floating">Your Goal</IonLabel>
                 <IonInput
-                  type='text'
+                  type="text"
                   value={props.editedGoal?.text}
                   ref={textRef}
                 />
@@ -60,20 +60,20 @@ const EditModal: React.FC<{
           {error && (
             <IonRow>
               <IonCol>
-                <IonText color='danger'>
+                <IonText color="danger">
                   <p>{error}</p>
                 </IonText>
               </IonCol>
             </IonRow>
           )}
-          <IonRow className='ion-text-center'>
+          <IonRow className="ion-text-center">
             <IonCol>
-              <IonButton color='dark' fill='clear' onClick={props.onCancel}>
+              <IonButton color="dark" fill="clear" onClick={props.onCancel}>
                 Cancel
               </IonButton>
             </IonCol>
             <IonCol>
-              <IonButton color='secondary' expand='block' onClick={saveHandler}>
+              <IonButton color="secondary" expand="block" onClick={saveHandler}>
                 Save
               </IonButton>
             </IonCol>
