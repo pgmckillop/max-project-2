@@ -1,6 +1,6 @@
 import React from "react";
 
-export interface Goal { 
+interface Goal { 
     id: string; 
     text: string;
 }
@@ -15,7 +15,7 @@ export interface Course {
 interface Context {
   courses: Course[];
   addCourse: (courseTitle: string, courseDate: Date) => void,
-  addGoal: (courseId: string, goalText: string) => void,
+  addGoal: () => void,
   deleteGoal: () => void,
   updateGoal: () => void,
 }
