@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import CoursesContext, { Course, Goal } from "./courses-context";
 
-import CoursesContext, { Course, Goal } from './courses-context';
-
-const CoursesContextProvider: React.FC = props => {
+const CoursesContextProvider: React.FC = (props) => {
   const [courses, setCourses] = useState<Course[]>([
     {
-      id: 'c1',
-      title: 'React - The Complete Guide',
+      id: "c1",
+      title: "React - The Complete Guide",
       enrolled: new Date(),
       goals: [],
-      included: true
-    }
+    },
   ]);
 
   const addCourse = (title: string, date: Date) => {
@@ -19,21 +17,19 @@ const CoursesContextProvider: React.FC = props => {
       title,
       enrolled: date,
       goals: [],
-      included: true
     };
 
-    setCourses(curCourses => {
+    setCourses((curCourses) => {
       return curCourses.concat(newCourse);
     });
   };
 
   const addGoal = (courseId: string, text: string) => {
     const newGoal: Goal = { id: Math.random().toString(), text };
-
-    setCourses(curCourses => {
-      const updatedCourses = [...curCourses];
+    setCourses((courses) => {
+      const updatedCourses = [...courses];
       const updatedCourseIndex = updatedCourses.findIndex(
-        course => course.id === courseId
+        (course) => course.id === courseId
       );
       const updatedCourseGoals = updatedCourses[
         updatedCourseIndex
@@ -45,61 +41,9 @@ const CoursesContextProvider: React.FC = props => {
     });
   };
 
-  const deleteGoal = (courseId: string, goalId: string) => {
-    setCourses(curCourses => {
-      const updatedCourses = [...curCourses];
-      const updatedCourseIndex = updatedCourses.findIndex(
-        course => course.id === courseId
-      );
-      const updatedCourseGoals = updatedCourses[
-        updatedCourseIndex
-      ].goals.filter(goal => goal.id !== goalId);
-      const updatedCourse = { ...updatedCourses[updatedCourseIndex] };
-      updatedCourse.goals = updatedCourseGoals;
-      updatedCourses[updatedCourseIndex] = updatedCourse;
-      return updatedCourses;
-    });
-  };
+  const deleteGoal = () => {};
 
-  const updateGoal = (courseId: string, goalId: string, newText: string) => {
-    setCourses(curCourses => {
-      const updatedCourses = [...curCourses];
-      const updatedCourseIndex = updatedCourses.findIndex(
-        course => course.id === courseId
-      );
-      const updatedCourseGoals = updatedCourses[
-        updatedCourseIndex
-      ].goals.slice();
-      const updatedCourseGoalIndex = updatedCourseGoals.findIndex(
-        goal => goal.id === goalId
-      );
-      const updatedGoal = {
-        ...updatedCourseGoals[updatedCourseGoalIndex],
-        text: newText
-      };
-      updatedCourseGoals[updatedCourseGoalIndex] = updatedGoal;
-      const updatedCourse = { ...updatedCourses[updatedCourseIndex] };
-      updatedCourse.goals = updatedCourseGoals;
-      updatedCourses[updatedCourseIndex] = updatedCourse;
-      return updatedCourses;
-    });
-  };
-
-  const changeCourseFilter = (courseId: string, isIncluded: boolean) => {
-    setCourses(curCourses => {
-      const updatedCourses = [...curCourses];
-      const updatedCourseIndex = updatedCourses.findIndex(
-        course => course.id === courseId
-      );
-
-      const updatedCourse = {
-        ...updatedCourses[updatedCourseIndex],
-        included: isIncluded
-      };
-      updatedCourses[updatedCourseIndex] = updatedCourse;
-      return updatedCourses;
-    });
-  };
+  const updateGoal = () => {};
 
   return (
     <CoursesContext.Provider
@@ -109,7 +53,6 @@ const CoursesContextProvider: React.FC = props => {
         addCourse,
         deleteGoal,
         updateGoal,
-        changeCourseFilter
       }}
     >
       {props.children}

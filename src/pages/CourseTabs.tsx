@@ -5,9 +5,9 @@ import {
   IonTabButton,
   IonTabBar,
   IonIcon,
-  IonLabel
+  IonLabel,
 } from '@ionic/react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 import { list, trophyOutline } from 'ionicons/icons';
 
 import Courses from './Courses';
@@ -18,23 +18,25 @@ const CourseTabs: React.FC = () => {
   return (
     <IonTabs>
       <IonRouterOutlet>
-        <Redirect path="/courses" to="/courses/all-goals" exact />
-        <Route path="/courses/list" exact>
-          <Courses />
-        </Route>
-        <Route path="/courses/all-goals" exact>
-          <AllGoals />
-        </Route>
-        <Route path="/courses/:courseId">
-          <CourseGoals />
-        </Route>
+        <Redirect path='/courses' to='/courses/list' exact />
+        <Switch>
+          <Route path='/courses/list' exact>
+            <Courses />
+          </Route>
+          <Route path='/courses/all-goals' exact>
+            <AllGoals />
+          </Route>
+          <Route path='/courses/:courseId'>
+            <CourseGoals />
+          </Route>
+        </Switch>
       </IonRouterOutlet>
-      <IonTabBar slot="bottom">
-        <IonTabButton tab="all-goals" href="/courses/all-goals">
+      <IonTabBar slot='bottom'>
+        <IonTabButton tab='all-goals' href='/courses/all-goals'>
           <IonIcon icon={list} />
           <IonLabel>All Goals</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="courses" href="/courses/list">
+        <IonTabButton tab='courses' href='/courses/list'>
           <IonIcon icon={trophyOutline} />
           <IonLabel>Courses</IonLabel>
         </IonTabButton>
